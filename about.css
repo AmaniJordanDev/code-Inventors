@@ -1,0 +1,405 @@
+/* ============================================================
+   ABOUT US PAGE STYLES
+   Note: colors, fonts, buttons, cards, footer, stats panel and
+   scroll-reveal animation all come from style.css. This file only
+   adds the pieces unique to the About Us page, so nothing here
+   duplicates rules that already exist on the Home page.
+   ============================================================ */
+
+/* ============================================
+   BREADCRUMB NAVIGATION
+   ============================================ */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
+.breadcrumb a {
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-light);
+}
+
+.breadcrumb .separator {
+  opacity: 0.5;
+}
+
+.breadcrumb .current {
+  color: var(--color-light);
+  font-weight: 500;
+}
+
+/* ============================================
+   ABOUT HERO BANNER
+   Sits inside the shared .hero-wrapper dark panel
+   ============================================ */
+.about-hero {
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 30px 0 70px;
+  overflow: hidden;
+}
+
+/* Soft glowing blobs behind the heading, purely decorative */
+.about-hero::before,
+.about-hero::after {
+  content: '';
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+  z-index: -1;
+}
+
+.about-hero::before {
+  background: var(--color-blue);
+  top: -80px;
+  left: -60px;
+}
+
+.about-hero::after {
+  background: var(--color-purple);
+  top: -40px;
+  right: -80px;
+}
+
+.about-hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-light);
+  max-width: 700px;
+}
+
+.about-hero-subtitle {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 620px;
+}
+
+/* ============================================
+   MISSION & VISION CARDS
+   ============================================ */
+.mv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mv-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Gradient accent bar that grows in on hover */
+.mv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.mv-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(10, 15, 28, 0.1);
+}
+
+.mv-card:hover::before {
+  transform: scaleX(1);
+}
+
+.mv-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.mv-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--color-bg-dark);
+}
+
+.mv-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-body);
+}
+
+/* ============================================
+   WHY JOIN — horizontal benefit cards
+   (visually distinct from the Core Values grid above it)
+   ============================================ */
+.why-join-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.why-join-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.why-join-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(10, 15, 28, 0.08);
+}
+
+.why-join-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--color-section-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.why-join-card h3 {
+  font-size: 17px;
+  margin-bottom: 6px;
+  color: var(--color-bg-dark);
+}
+
+.why-join-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-body);
+}
+
+/* ============================================
+   COMMUNITY JOURNEY — TIMELINE
+   ============================================ */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* The vertical track line running down the center (desktop) */
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: var(--color-border-light);
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+/* Fills in as the user scrolls, controlled by about.js */
+.timeline-line-fill {
+  width: 100%;
+  height: 0%;
+  background: var(--gradient-primary);
+  border-radius: 3px;
+  transition: height 0.1s linear;
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 0 48px 60px;
+}
+
+/* Alternate items to the left and right of the center line */
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-bg-dark);
+  border: 3px solid var(--color-blue);
+  z-index: 2;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+  right: -9px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+  left: -9px;
+}
+
+.timeline-content {
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: 22px 26px;
+  display: inline-block;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(10, 15, 28, 0.08);
+}
+
+.timeline-year {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-blue);
+  background: var(--color-section-alt);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.timeline-content h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+  color: var(--color-bg-dark);
+}
+
+.timeline-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-body);
+}
+
+/* ============================================
+   TEAM PREVIEW — "view full team" link
+   ============================================ */
+.team-preview-footer {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* ============================================
+   STATS — 5-column variant for this page
+   (base .stats-panel already handles 4 columns)
+   ============================================ */
+.stats-panel-wide {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* ============================================
+   RESPONSIVE — TABLET
+   ============================================ */
+@media (max-width: 1024px) {
+  .about-hero-title {
+    font-size: 38px;
+  }
+
+  .mv-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+
+  .why-join-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-panel-wide {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE
+   Timeline collapses into a single column with the
+   line and dots moved to the left edge
+   ============================================ */
+@media (max-width: 800px) {
+  .about-hero-title {
+    font-size: 30px;
+  }
+
+  .about-hero-subtitle {
+    font-size: 15px;
+  }
+
+  .timeline-line {
+    left: 10px;
+    transform: none;
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    width: 100%;
+    left: 0;
+    text-align: left;
+    padding: 0 0 40px 48px;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-dot,
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: 1px;
+    right: auto;
+  }
+
+  .stats-panel-wide {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero-title {
+    font-size: 26px;
+  }
+
+  .stats-panel-wide {
+    grid-template-columns: 1fr;
+  }
+}
