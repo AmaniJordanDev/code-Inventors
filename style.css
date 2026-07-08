@@ -12,6 +12,11 @@
   --color-text-muted: #9ca3af;    /* muted gray text on dark bg */
   --color-border: rgba(255, 255, 255, 0.08);
 
+  /* Extra tokens for the light-background sections below the hero */
+  --color-text-body: #5b6472;     /* body copy on light sections */
+  --color-section-alt: #eef1f7;   /* alternate section background */
+  --color-border-light: rgba(10, 15, 28, 0.08);
+
   /* Gradient used on logos, buttons and highlighted text */
   --gradient-primary: linear-gradient(135deg, var(--color-blue), var(--color-purple));
 
@@ -27,6 +32,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* enables smooth scrolling for #anchor links */
 }
 
 body {
@@ -414,6 +423,694 @@ a {
   color: var(--color-text-muted);
 }
 
+
+/* ============================================================
+   ============================================================
+   MAIN CONTENT — everything below the hero section
+   ============================================================
+   ============================================================ */
+
+/* Sets the default text color for all body sections, since the
+   base <body> color is light-on-light (made for the dark hero) */
+.site-main {
+  color: var(--color-bg-dark);
+}
+
+/* Shared container used by every section for consistent max-width */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Shared vertical rhythm between sections */
+.section {
+  padding: 100px 0;
+}
+
+/* Alternate background used every other section for visual rhythm */
+.section-alt {
+  background: var(--color-section-alt);
+}
+
+/* Centered heading block reused at the top of most sections */
+.section-header {
+  max-width: 640px;
+  margin: 0 auto 56px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-title {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-bg-dark);
+}
+
+.section-subtitle,
+.section-text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text-body);
+}
+
+/* ============================================
+   SCROLL REVEAL ANIMATION
+   Elements start slightly lower and faded out,
+   then JavaScript adds "visible" when scrolled into view
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 360px;
+}
+
+.about-card-main {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1 / 1;
+  background: var(--color-bg-dark);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: var(--color-light);
+  box-shadow: 0 20px 60px rgba(10, 15, 28, 0.15);
+}
+
+.about-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.about-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Small floating stat cards layered on top of the main visual */
+.about-float-card {
+  position: absolute;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  box-shadow: 0 10px 30px rgba(10, 15, 28, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.about-float-card strong {
+  font-size: 20px;
+  color: var(--color-bg-dark);
+}
+
+.about-float-card span {
+  font-size: 12px;
+  color: var(--color-text-body);
+}
+
+.about-float-top {
+  top: 0;
+  right: -10px;
+}
+
+.about-float-bottom {
+  bottom: 10px;
+  left: -20px;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.about-highlights {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.about-highlights li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--color-bg-dark);
+}
+
+.check-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   MISSION / WHAT WE DO GRID
+   ============================================ */
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.mission-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(10, 15, 28, 0.08);
+}
+
+.mission-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.mission-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.mission-card p {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.6;
+}
+
+/* ============================================
+   WHY JOIN — BENEFITS GRID
+   ============================================ */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.benefit-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(10, 15, 28, 0.08);
+}
+
+.benefit-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--gradient-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+.benefit-card h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.benefit-card p {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.6;
+}
+
+/* ============================================
+   COMMUNITY STATISTICS PANEL
+   Dark panel that echoes the hero background
+   ============================================ */
+.stats-section {
+  padding: 0 0 100px;
+}
+
+.stats-panel {
+  background: var(--color-bg-dark);
+  border-radius: var(--radius-lg);
+  padding: 60px 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-value {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.stat-number {
+  font-size: 40px;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stat-suffix {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--color-purple-light);
+}
+
+.stat-block p {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   FEATURED PROJECTS GRID
+   ============================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.project-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(10, 15, 28, 0.1);
+}
+
+.project-thumb {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+}
+
+.thumb-blue { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+.thumb-purple { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+.thumb-gradient { background: var(--gradient-primary); }
+
+.project-body {
+  padding: 24px;
+}
+
+.project-tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.project-tags span {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--color-section-alt);
+  color: var(--color-bg-dark);
+}
+
+.project-body h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.project-body p {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-blue);
+}
+
+.project-link .arrow {
+  transition: transform 0.2s ease;
+}
+
+.project-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   MEET THE TEAM GRID
+   ============================================ */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.team-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(10, 15, 28, 0.08);
+}
+
+.team-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0 auto 16px;
+}
+
+.team-card h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.team-role {
+  display: block;
+  font-size: 13px;
+  color: var(--color-text-body);
+  margin-bottom: 16px;
+}
+
+.team-socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.team-socials a {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--color-section-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-bg-dark);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.team-socials a:hover {
+  background: var(--gradient-primary);
+  color: #fff;
+}
+
+
+
+/* ============================================
+   CALL TO ACTION PANEL
+   ============================================ */
+.cta-panel {
+  background: var(--color-bg-dark);
+  border-radius: var(--radius-lg);
+  padding: 70px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft glow blob in the corner, purely decorative */
+.cta-panel::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: var(--gradient-primary);
+  opacity: 0.25;
+  filter: blur(80px);
+  top: -100px;
+  right: -60px;
+}
+
+.cta-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-light);
+  position: relative;
+}
+
+.cta-subtitle {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  max-width: 480px;
+  position: relative;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-secondary-light {
+  background: transparent;
+  color: var(--color-light);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary-light:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   SITE FOOTER
+   ============================================ */
+.site-footer {
+  background: var(--color-bg-dark);
+  color: var(--color-light);
+  padding: 70px 0 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.footer-brand .footer-about {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 16px 0 20px;
+  max-width: 280px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.footer-socials a:hover {
+  background: var(--gradient-primary);
+  transform: translateY(-3px);
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: var(--color-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-links a,
+.footer-contact a {
+  display: block;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+  color: var(--color-light);
+  padding-left: 4px;
+}
+
+.footer-contact p {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 40px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   BACK TO TOP BUTTON
+   Fixed circular button, appears after scrolling down
+   ============================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 50;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .floating-badge {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /* ============================================
    RESPONSIVE — TABLET
    ============================================ */
@@ -492,5 +1189,107 @@ a {
   .hero-wrapper {
     padding: 16px 16px 24px;
     border-radius: 14px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — MAIN CONTENT SECTIONS (TABLET)
+   ============================================ */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  /* Show the visual above the text on tablet and mobile */
+  .about-visual {
+    order: -1;
+  }
+
+  .mission-grid,
+  .benefits-grid,
+  .stats-panel,
+  .projects-grid,
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — MAIN CONTENT SECTIONS (MOBILE)
+   ============================================ */
+@media (max-width: 800px) {
+  .section {
+    padding: 70px 0;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  .mission-grid,
+  .benefits-grid,
+  .projects-grid,
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-panel {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 40px 24px;
+  }
+
+  .cta-panel {
+    padding: 50px 24px;
+  }
+
+  .cta-title {
+    font-size: 26px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .footer-brand .footer-about {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+
+  /* Floating stat cards get crowded on narrow screens, simplify */
+  .about-float-card {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-number,
+  .stat-suffix {
+    font-size: 32px;
+  }
+
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 20px;
   }
 }
